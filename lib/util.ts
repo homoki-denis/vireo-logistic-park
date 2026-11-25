@@ -56,7 +56,7 @@ export function doorPosition(
 
 /** local (building-relative) point → world, taking b.rot into account */
 export function toWorld(
-  b: BuildingSpe,
+  b: BuildingSpec,
   lx: number,
   lz: number,
 ): { x: number; z: number } {
