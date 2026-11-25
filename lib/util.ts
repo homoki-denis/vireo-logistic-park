@@ -25,21 +25,41 @@ export function headingFrom(dx: number, dz: number) {
 }
 
 /** world position of the middle of a door on a building face */
-export function doorPosition(b: BuildingSpec, door: DoorSpec, outset = 0): { x: number; z: number; rotY: number } {
+export function doorPosition(
+  b: BuildingSpec,
+  door: DoorSpec,
+  outset = 0,
+): { x: number; z: number; rotY: number } {
   switch (door.face) {
     case "s":
       return { x: b.x + door.at * b.w, z: b.z + b.d / 2 + outset, rotY: 0 };
     case "n":
-      return { x: b.x + door.at * b.w, z: b.z - b.d / 2 - outset, rotY: Math.PI };
+      return {
+        x: b.x + door.at * b.w,
+        z: b.z - b.d / 2 - outset,
+        rotY: Math.PI,
+      };
     case "e":
-      return { x: b.x + b.w / 2 + outset, z: b.z + door.at * b.d, rotY: Math.PI / 2 };
+      return {
+        x: b.x + b.w / 2 + outset,
+        z: b.z + door.at * b.d,
+        rotY: Math.PI / 2,
+      };
     case "w":
-      return { x: b.x - b.w / 2 - outset, z: b.z + door.at * b.d, rotY: -Math.PI / 2 };
+      return {
+        x: b.x - b.w / 2 - outset,
+        z: b.z + door.at * b.d,
+        rotY: -Math.PI / 2,
+      };
   }
 }
 
 /** local (building-relative) point → world, taking b.rot into account */
-export function toWorld(b: BuildingSpec, lx: number, lz: number): { x: number; z: number } {
+export function toWorld(
+  b: BuildingSpe,
+  lx: number,
+  lz: number,
+): { x: number; z: number } {
   const t = b.rot ?? 0;
   const c = Math.cos(t);
   const s = Math.sin(t);
