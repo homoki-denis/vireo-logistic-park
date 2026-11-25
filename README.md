@@ -1,35 +1,41 @@
-# Vireo Logistic Park · demo 3D
+# Vireo Logistic Park · 3D demo
 
-Demo de prezentare (RO / EN, merge și pe telefon): hartă 3D a unui parc logistic **fictiv**, cu depozite, coduri de produs și pontaj.
-**Toate datele sunt inventate**: firma, depozitele, produsele, angajații și ecusoanele. Nu descriu niciun loc și nicio persoană reale.
+A showcase demo (Romanian / English, mobile-friendly): a 3D map of a **fictional** logistics park with warehouses, product codes and staff attendance.
+**All data is made up**: the company, warehouses, products, employees and badges. None of it describes a real place or person.
 
 Stack: **Next.js 15 · React 19 · TypeScript · React Three Fiber (three.js) · drei · zustand**.
 
-## Pornire
+## Getting started
 
 ```bash
 npm install
 npm run dev                      # http://localhost:3000
-npm run build && npm start       # producție
-STATIC_EXPORT=1 npm run build    # site static în out/
+npm run build && npm start       # production
+STATIC_EXPORT=1 npm run build    # static site in out/
 ```
 
-## Ce face
+## Features
 
-- **Hartă 3D** cu 6 depozite (POC, LIR, VEN, TEM, ARC, SEZ), clădirea de birouri ADM și atelierul MNT. Mai sunt stivuitoare și camioane animate, iar barierele de la poartă se ridică automat.
-- **Coduri de produs.** Fiecare cod are prefixul depozitului: `POC235` = Mănuși de lucru din depozitul POC. Codul e căutabil din bara de sus (tasta `/`) și din tabul *Produse*.
-- **Pontaj.** Vezi cine e prezent acum în fiecare clădire principală (tabul *Pontaj* sau click pe un depozit). Fișa fiecărei persoane are ecusonul, rolul, tura, ora de pontare, interiorul și ultima scanare.
-- **Activitate live** (simulată): pontări, pauze, scanări de produse și mutări între depozite.
+- **3D map** with 6 warehouses (POC, LIR, VEN, TEM, ARC, SEZ), the ADM office building and the MNT workshop. Forklifts and trucks are animated, and the gate barriers lift automatically.
+- **Product codes.** Every code starts with its warehouse prefix: `POC235` = Work gloves in the POC warehouse. Codes are searchable from the top bar (press `/`) and from the *Products* tab.
+- **Attendance.** See who is on site right now in each main building (the *Attendance* tab, or click a warehouse). Each person's card shows their badge, role, shift, clock-in time, phone extension and last scan.
+- **Live activity** (simulated): clock-ins, breaks, product scans and moves between warehouses.
+- **Language switch** (RO / EN) in the header, remembered between visits.
+- **Mobile layout** below 760 px: full-screen map, bottom tab bar and slide-up sheets.
 
-## Unde modifici
+## Where to edit
 
-| Fișier | Ce conține |
+| File | Contents |
 | --- | --- |
-| `lib/catalog.ts` | depozitele (cod, nume, culoare), produsele și angajații (generați determinist) |
-| `lib/sites.ts` | layout-ul 3D: clădiri, parcări, trasee vehicule, bariere |
-| `lib/i18n.ts` | traducerile: textele interfeței (RO/EN) și tabelul RO → EN pentru date |
-| `lib/sim.ts` | datele „live” simulate (pontaj, stoc, feed). Le poți înlocui cu un API real |
-| `components/ui/Panels.tsx` | interfața: căutare, taburi, panouri de detalii |
-| `components/three/*` | modelele 3D și camera |
+| `lib/catalog.ts` | warehouses (code, name, colour), products and employees (generated deterministically) |
+| `lib/sites.ts` | the 3D layout: buildings, parking lots, vehicle routes, barriers |
+| `lib/i18n.ts` | translations: UI strings (RO/EN) and the RO → EN table for data |
+| `lib/sim.ts` | simulated "live" data (attendance, stock, feed). Can be replaced with a real API |
+| `components/ui/Panels.tsx` | the interface: search, tabs, detail panels |
+| `components/three/*` | 3D models and the camera |
 
-Un depozit nou se adaugă cu o intrare în `DEPOTS` (catalog) și o clădire cu același `code` în `sites.ts`.
+To add a warehouse, add an entry to `DEPOTS` (catalog) and a building with the same `code` in `sites.ts`.
+
+## Deploy
+
+The easiest way is [Vercel](https://vercel.com): import the GitHub repository and click **Deploy**. No configuration is needed, and every push to `main` redeploys automatically.
